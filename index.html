@@ -43,7 +43,6 @@
             user-select: none;
         }
 
-        /* Global Hello Kitty style background layer */
         .bg-overlay {
             position: fixed;
             top: 0;
@@ -83,7 +82,6 @@
             transform: scale(1);
         }
 
-        /* Glassmorphism card container used in scenes */
         .card {
             background: rgba(255, 255, 255, 0.65);
             backdrop-filter: blur(10px);
@@ -107,7 +105,6 @@
             line-height: 1.4;
         }
 
-        /* Buttons styling */
         .btn {
             font-family: var(--font-main);
             border: none;
@@ -120,57 +117,23 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
-        .btn-primary {
-            background-color: var(--dark-pink);
-            color: white;
-        }
-
-        .btn-secondary {
-            background-color: white;
-            color: var(--dark-pink);
-            border: 2px solid var(--light-pink);
-        }
+        .btn-primary { background-color: var(--dark-pink); color: white; }
+        .btn-secondary { background-color: white; color: var(--dark-pink); border: 2px solid var(--light-pink); }
 
         /* ==========================================
-           4. INTRO SCREEN (DARK)
+           4. INTRO SCREEN
            ========================================== */
-        #intro-scene {
-            background-color: #1a1a1a;
-            color: #ffffff;
-            z-index: 10;
-        }
-
-        #intro-scene .text-1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s ease;
-        }
-
-        #intro-scene .text-2 {
-            font-size: 1.1rem;
-            color: #aaaaaa;
-            margin-top: 1.5rem;
-            opacity: 0;
-            transition: all 0.8s ease;
-            animation: pulse 1.5s infinite alternate;
-        }
+        #intro-scene { background-color: #1a1a1a; color: #ffffff; z-index: 10; }
+        #intro-scene .text-1 { font-size: 1.8rem; font-weight: 700; opacity: 0; transform: translateY(20px); transition: all 0.8s ease; }
+        #intro-scene .text-2 { font-size: 1.1rem; color: #aaaaaa; margin-top: 1.5rem; opacity: 0; transition: all 0.8s ease; animation: pulse 1.5s infinite alternate; }
 
         /* ==========================================
-           5. SCENE 1: THE TRICK BUTTONS
+           5. SCENE 1: BUTTONS
            ========================================== */
-        .btn-container-s1 {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            min-height: 150px; /* Space for the growing button */
-        }
+        .btn-container-s1 { display: flex; gap: 1rem; align-items: center; justify-content: center; width: 100%; min-height: 150px; }
 
         /* ==========================================
-           6. SCENE 2: THE SLIDER
+           6. SCENE 2: SLIDER
            ========================================== */
         .slider-wrapper {
             display: flex;
@@ -182,9 +145,8 @@
         }
 
         .slider-label {
-            font-weight: 700;
-            color: var(--dark-pink);
-            font-size: 1.2rem;
+            font-weight: 900;
+            font-size: 1.4rem;
         }
 
         .slider-container {
@@ -194,122 +156,122 @@
             margin: 0.5rem 0;
         }
 
-        /* Vertical Input Slider Hack for Cross-browser Mobile */
+        #sad-emoji {
+            position: absolute;
+            top: 25px;
+            font-size: 2.5rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
         .vertical-slider {
             -webkit-appearance: none;
             appearance: none;
             width: 180px;
-            height: 12px;
+            height: 16px;
             border-radius: 10px;
-            background: rgba(251, 111, 146, 0.2);
+            /* Gradient: Green (Yes) at 0, Red (No) at 100 */
+            background: linear-gradient(90deg, #4caf50 0%, #f44336 100%);
             outline: none;
             position: absolute;
             top: 84px;
             left: -70px;
-            transform: rotate(90deg);
+            transform: rotate(-90deg); /* Rotate to make it vertical */
         }
 
         .vertical-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 35px;
-            height: 35px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            background: var(--dark-pink);
+            background: #fff;
             cursor: pointer;
-            box-shadow: 0 3px 10px rgba(251, 111, 146, 0.4);
-            border: 3px solid white;
-            transition: background 0.2s;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            border: 4px solid var(--dark-pink);
+            transition: transform 0.1s;
         }
 
         /* ==========================================
-           7. SCENE 3: CAKE CUTTING
+           7. SCENE 3: CAKE
            ========================================== */
-        .cake-box {
-            position: relative;
-            width: 240px;
-            height: 240px;
+        .simple-cake {
+            width: 220px;
+            height: auto;
             margin: 2rem 0;
-            cursor: grab;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
         }
 
-        .cake-half {
-            position: absolute;
-            width: 120px;
-            height: 240px;
-            overflow: hidden;
-            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .cake-left {
-            left: 0;
-        }
-
-        .cake-right {
-            right: 0;
-        }
-
-        .cake-img {
-            width: 240px;
-            height: 240px;
-            max-width: none;
-            pointer-events: none;
-        }
-
-        .cake-right .cake-img {
-            margin-left: -120px;
-        }
-
-        /* Visual guide for cutting */
-        .cut-line {
-            position: absolute;
-            left: 50%;
-            top: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent, var(--dark-pink), transparent);
-            transform: translateX(-50%);
-            z-index: 5;
-            opacity: 0.6;
-            animation: blink 1s infinite;
+        .simple-cake:active {
+            transform: scale(0.9);
         }
 
         /* ==========================================
-           8. SCENE 4: LETTER & ENVELOPE
+           8. SCENE 4: ENVELOPE 💌
            ========================================== */
         .envelope-wrapper {
             position: relative;
-            width: 200px;
-            height: 140px;
-            margin-top: 3rem;
+            width: 240px;
+            height: 160px;
+            margin-top: 2rem;
             cursor: pointer;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
 
-        .envelope {
+        .envelope-front {
             position: absolute;
+            bottom: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--dark-pink);
-            border-radius: 0 0 15px 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            /* Creating the folded look of an envelope */
+            border-left: 120px solid #f9f9f9;
+            border-right: 120px solid #f9f9f9;
+            border-bottom: 80px solid #f0f0f0;
+            border-top: 80px solid transparent;
+            border-radius: 0 0 10px 10px;
+            z-index: 4;
+            pointer-events: none;
         }
 
-        .envelope::before {
-            content: '';
+        .envelope-flap {
             position: absolute;
-            top: -70px;
+            top: 0;
             left: 0;
-            border-left: 100px solid transparent;
-            border-right: 100px solid transparent;
-            border-bottom: 70px solid var(--dark-pink);
-            transform-origin: bottom;
-            transition: transform 0.4s ease;
-            z-index: 3;
+            width: 0;
+            height: 0;
+            border-left: 120px solid transparent;
+            border-right: 120px solid transparent;
+            border-top: 90px solid #ffffff;
+            transform-origin: top;
+            transition: transform 0.6s ease;
+            z-index: 5;
+            filter: drop-shadow(0 3px 3px rgba(0,0,0,0.08));
         }
 
-        .envelope.open::before {
-            transform: rotateX(180deg) translateY(70px);
+        .envelope-wrapper.open .envelope-flap {
+            transform: rotateX(180deg);
             z-index: 1;
+        }
+
+        .heart-seal {
+            position: absolute;
+            top: 72px; /* Positioned right at the tip of the flap */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            z-index: 6;
+            transition: opacity 0.3s ease;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .envelope-wrapper.open .heart-seal {
+            opacity: 0;
         }
 
         /* Letter sliding out mechanism */
@@ -319,7 +281,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.4);
+            background: rgba(0,0,0,0.5);
             z-index: 20;
             opacity: 0;
             pointer-events: none;
@@ -330,10 +292,7 @@
             padding: 1.5rem;
         }
 
-        .letter-popup-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
+        .letter-popup-overlay.active { opacity: 1; pointer-events: auto; }
 
         .letter {
             width: 100%;
@@ -344,83 +303,26 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
             transform: translateY(100vh);
             transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-            position: relative;
             border-right: 6px solid var(--dark-pink);
         }
 
-        .letter-popup-overlay.active .letter {
-            transform: translateY(0);
-        }
-
-        .letter-header {
-            text-align: right;
-            font-weight: 700;
-            color: var(--dark-pink);
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .letter-body {
-            text-align: justify;
-            line-height: 1.8;
-            font-size: 1.05rem;
-            color: #555;
-            margin-bottom: 2rem;
-        }
-
-        .letter-footer {
-            text-align: left;
-            font-weight: 700;
-            color: var(--dark-pink);
-            font-size: 1.1rem;
-        }
+        .letter-popup-overlay.active .letter { transform: translateY(0); }
+        .letter-header { text-align: right; font-weight: 700; color: var(--dark-pink); font-size: 1.2rem; margin-bottom: 1rem; }
+        .letter-body { text-align: justify; line-height: 1.8; font-size: 1.05rem; color: #555; margin-bottom: 2rem; }
+        .letter-footer { text-align: left; font-weight: 700; color: var(--dark-pink); font-size: 1.1rem; }
 
         /* ==========================================
            9. EFFECTS & ANIMATIONS
            ========================================== */
-        @keyframes pulse {
-            from { opacity: 0.3; }
-            to { opacity: 0.8; }
-        }
+        @keyframes pulse { from { opacity: 0.3; } to { opacity: 0.8; } }
+        .bounce-active { animation: bounce 0.6s ease; }
+        @keyframes bounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
 
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
+        .heart-particle { position: fixed; pointer-events: none; z-index: 999; animation: floatUp 2s ease-out forwards; }
+        @keyframes floatUp { 0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; } 100% { transform: translateY(-150px) scale(0.5) rotate(45deg); opacity: 0; } }
 
-        .bounce-active {
-            animation: bounce 0.6s ease;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        /* Particles / Floating Hearts */
-        .heart-particle {
-            position: fixed;
-            pointer-events: none;
-            z-index: 999;
-            animation: floatUp 2s ease-out forwards;
-        }
-
-        @keyframes floatUp {
-            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-150px) scale(0.5) rotate(45deg); opacity: 0; }
-        }
-
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            z-index: 999;
-            animation: fall 3s ease-out forwards;
-        }
-
-        @keyframes fall {
-            0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-        }
+        .confetti { position: fixed; width: 10px; height: 10px; z-index: 999; animation: fall 3s ease-out forwards; }
+        @keyframes fall { 0% { transform: translateY(-50px) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
     </style>
 </head>
 <body>
@@ -436,8 +338,8 @@
         <div class="card">
             <h2>عيد ميلاد مين اليوم؟ 🎀</h2>
             <div class="btn-container-s1">
-                <button id="btn-no" class="btn btn-secondary">لا</button>
-                <button id="btn-yes" class="btn btn-primary">نعم</button>
+                <button id="btn-no" class="btn btn-secondary">لا أعرف</button>
+                <button id="btn-yes" class="btn btn-primary">أنا!</button>
             </div>
         </div>
     </section>
@@ -446,27 +348,20 @@
         <div class="card">
             <h2>كنتي متوقعة إني أهتم كثير ليوم زي هيك؟</h2>
             <div class="slider-wrapper">
-                <span class="slider-label">لا</span>
+                <span class="slider-label" style="color: #f44336;">لا</span>
+                <div id="sad-emoji">😢</div>
                 <div class="slider-container">
-                    <input type="range" id="love-slider" class="vertical-slider" min="0" max="100" value="0">
+                    <input type="range" id="love-slider" class="vertical-slider" min="0" max="100" value="50">
                 </div>
-                <span class="slider-label">نعم</span>
+                <span class="slider-label" style="color: #4caf50;">نعم</span>
             </div>
         </div>
     </section>
 
     <section id="scene-3" class="scene">
         <div class="card">
-            <h2>اقسمي كيكتك 🎂</h2>
-            <div class="cake-box" id="cake-box">
-                <div class="cut-line" id="cut-line"></div>
-                <div class="cake-half cake-left">
-                    <img src="cake.png" alt="Cake Left" class="cake-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'240\' height=\'240\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'60\' r=\'35\' fill=\'%23fb6f92\'/><rect x=\'47\' y=\'10\' width=\'6\' height=\'15\' fill=\'%23ffb7c5\'/><circle cx=\'50\' cy=\'8\' r=\'4\' fill=\'%23ffd166\'/></svg>'">
-                </div>
-                <div class="cake-half cake-right">
-                    <img src="cake.png" alt="Cake Right" class="cake-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'240\' height=\'240\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'60\' r=\'35\' fill=\'%23fb6f92\'/><rect x=\'47\' y=\'10\' width=\'6\' height=\'15\' fill=\'%23ffb7c5\'/><circle cx=\'50\' cy=\'8\' r=\'4\' fill=\'%23ffd166\'/></svg>'">
-                </div>
-            </div>
+            <h2>اضغطي على الكيكة! 🎂</h2>
+            <img src="cake.png" id="the-cake" class="simple-cake" alt="Cake" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'240\' height=\'240\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'60\' r=\'35\' fill=\'%23fb6f92\'/><rect x=\'47\' y=\'10\' width=\'6\' height=\'15\' fill=\'%23ffb7c5\'/><circle cx=\'50\' cy=\'8\' r=\'4\' fill=\'%23ffd166\'/></svg>'">
         </div>
     </section>
 
@@ -474,71 +369,53 @@
         <div class="card">
             <h2>عندك رسالة 💌</h2>
             <div class="envelope-wrapper" id="envelope-wrapper">
-                <div class="envelope" id="main-envelope"></div>
+                <div class="envelope-front"></div>
+                <div class="envelope-flap"></div>
+                <div class="heart-seal">❤️</div>
             </div>
         </div>
     </section>
 
     <div class="letter-popup-overlay" id="letter-overlay">
         <article class="letter">
-            <div class="letter-header" id="recipient-name">عزيزتي (اسمها)</div>
+            <div class="letter-header" id="recipient-name">عزيزتي</div>
             <p class="letter-body" id="birthday-message">
-                هنا يمكنك كتابة الرسالة الكاملة والجميلة لعيد الميلاد. هذا النص عبارة عن مساحة مخصصة لتعبيري عن أصدق الأمنيات والتهاني بInteraction فريد من نوعه. كل عام وأنتِ بخير وبكامل السعادة والبهجة دائماً وأبداً.
+                النص يوضع هنا.
             </p>
-            <div class="letter-footer" id="sender-name">(اسمك)</div>
+            <div class="letter-footer" id="sender-name"></div>
         </article>
     </div>
 
     <script>
-        /* ==========================================
-           EASY CUSTOMIZATION VARIABLE SETUP
-           ========================================== */
         const CONFIG = {
             recipientName: "سارة", 
             senderName: "عبدالله",
             message: "كل عام وأنتِ ألطف وأجمل من كبر! أتمنى لكِ سنة مليئة بالفرح والضحكات التي تشبه قلبك. هذا الموقع الصغير صنعته خصيصاً لأجلك لأعبر لكِ عن مدى تميز هذا اليوم."
         };
 
-        // Populate dynamic configurations
         document.getElementById('recipient-name').innerText = `عزيزتي ${CONFIG.recipientName} ✨`;
         document.getElementById('sender-name').innerText = CONFIG.senderName;
         document.getElementById('birthday-message').innerText = CONFIG.message;
 
-
-        /* ==========================================
-           SCENE NAVIGATION LOGIC
-           ========================================== */
         function navigateToScene(currentId, nextId) {
             const current = document.getElementById(currentId);
             const next = document.getElementById(nextId);
-            
             current.classList.remove('active');
-            setTimeout(() => {
-                next.classList.add('active');
-            }, 600); // Dynamic matching with transition tokens
+            setTimeout(() => { next.classList.add('active'); }, 600);
         }
 
-
-        /* ==========================================
-           INTRO SCREEN LOGIC
-           ========================================== */
+        /* ---------------- INTRO ---------------- */
         setTimeout(() => {
             document.getElementById('intro-t1').style.opacity = '1';
             document.getElementById('intro-t1').style.transform = 'translateY(0)';
         }, 500);
-
-        setTimeout(() => {
-            document.getElementById('intro-t2').style.opacity = '1';
-        }, 1500);
+        setTimeout(() => { document.getElementById('intro-t2').style.opacity = '1'; }, 1500);
 
         document.getElementById('intro-scene').addEventListener('click', () => {
             navigateToScene('intro-scene', 'scene-1');
         });
 
-
-        /* ==========================================
-           SCENE 1: BUTTONS TRICK
-           ========================================== */
+        /* ---------------- SCENE 1 ---------------- */
         const btnNo = document.getElementById('btn-no');
         const btnYes = document.getElementById('btn-yes');
         let clickCount = 0;
@@ -551,11 +428,8 @@
                 clickCount++;
                 yesScale += 0.4;
                 noScale -= 0.12;
-                
                 btnYes.style.transform = `scale(${yesScale})`;
                 btnNo.style.transform = `scale(${noScale})`;
-                
-                // Add minor random translation to the "No" button so it subtly evades clicks
                 const randomX = (Math.random() - 0.5) * 20;
                 const randomY = (Math.random() - 0.5) * 20;
                 btnNo.style.translate = `${randomX}px ${randomY}px`;
@@ -564,101 +438,72 @@
 
         btnYes.addEventListener('click', () => {
             btnYes.classList.add('bounce-active');
-            setTimeout(() => {
-                navigateToScene('scene-1', 'scene-2');
-            }, 600);
+            setTimeout(() => { navigateToScene('scene-1', 'scene-2'); }, 600);
         });
 
-
-        /* ==========================================
-           SCENE 2: SLIDER ACTION
-           ========================================== */
+        /* ---------------- SCENE 2: SLIDER ---------------- */
         const slider = document.getElementById('love-slider');
+        const sadEmoji = document.getElementById('sad-emoji');
+        let scene2Done = false;
         
         slider.addEventListener('input', () => {
-            // Check if it reached the maximum end (bottom dynamically translated to 100)
-            if (parseInt(slider.value) === 100) {
+            if (scene2Done) return;
+            let val = parseInt(slider.value);
+            
+            // السحب للأعلى (أحمر / لا) - القيمة تقترب من 100 بسبب الدوران
+            if (val > 85) {
+                sadEmoji.style.opacity = '1';
+                sadEmoji.style.transform = 'translateY(-15px) scale(1.2)';
+            } else {
+                sadEmoji.style.opacity = '0';
+                sadEmoji.style.transform = 'translateY(0) scale(1)';
+            }
+
+            // السحب للأسفل (أخضر / نعم) - القيمة تقترب من 0
+            if (val < 10) {
+                scene2Done = true;
                 slider.disabled = true;
                 createConfetti();
-                setTimeout(() => {
-                    navigateToScene('scene-2', 'scene-3');
-                }, 800);
+                setTimeout(() => { navigateToScene('scene-2', 'scene-3'); }, 800);
             }
         });
 
-        // Mobile reset mechanism if let go early
-        slider.addEventListener('touchend', () => {
-            if (parseInt(slider.value) < 100) {
-                slider.value = 0;
+        // إذا تم الإفلات ولم تصل للنجاح ترجع للمنتصف
+        function resetSlider() {
+            if (!scene2Done) {
+                slider.value = 50;
+                sadEmoji.style.opacity = '0';
             }
-        });
-        slider.addEventListener('mouseup', () => {
-            if (parseInt(slider.value) < 100) {
-                slider.value = 0;
-            }
-        });
+        }
+        slider.addEventListener('touchend', resetSlider);
+        slider.addEventListener('mouseup', resetSlider);
 
 
-        /* ==========================================
-           SCENE 3: CAKE SWIPE INTERACTION
-           ========================================== */
-        const cakeBox = document.getElementById('cake-box');
-        const cutLine = document.getElementById('cut-line');
-        const leftHalf = document.querySelector('.cake-left');
-        const rightHalf = document.querySelector('.cake-right');
-        
-        let startY = 0;
-        let isSwiping = false;
+        /* ---------------- SCENE 3: CAKE ---------------- */
+        const theCake = document.getElementById('the-cake');
+        let cakeClicked = false;
 
-        cakeBox.addEventListener('touchstart', (e) => {
-            startY = e.touches[0].clientY;
-            isSwiping = true;
-        });
-
-        cakeBox.addEventListener('touchmove', (e) => {
-            if (!isSwiping) return;
-            let currentY = e.touches[0].clientY;
-            let diffY = currentY - startY;
-
-            // Detect clean vertical movement/swipe passing 80px range
-            if (Math.abs(diffY) > 80) {
-                isSwiping = false;
-                triggerCakeCut();
-            }
-        });
-
-        // Mouse fallbacks for desktop simulator testing
-        cakeBox.addEventListener('mousedown', (e) => { startY = e.clientY; isSwiping = true; });
-        cakeBox.addEventListener('mousemove', (e) => {
-            if(isSwiping && Math.abs(e.clientY - startY) > 80) { isSwiping = false; triggerCakeCut(); }
-        });
-        window.addEventListener('mouseup', () => { isSwiping = false; });
-
-        function triggerCakeCut() {
-            cutLine.style.display = 'none';
-            leftHalf.style.transform = 'translateX(-60px) rotate(-5deg)';
-            rightHalf.style.transform = 'translateX(60px) rotate(5deg)';
+        theCake.addEventListener('click', () => {
+            if (cakeClicked) return;
+            cakeClicked = true;
             
+            // تأثير ضغطة بسيطة
+            theCake.style.transform = 'scale(0.9)';
             createConfetti();
             createHeartsBurst();
             
             setTimeout(() => {
                 navigateToScene('scene-3', 'scene-4');
-            }, 1800);
-        }
+            }, 1200);
+        });
 
 
-        /* ==========================================
-           SCENE 4: ENVELOPE OPENING
-           ========================================== */
+        /* ---------------- SCENE 4: ENVELOPE ---------------- */
         const envelopeWrapper = document.getElementById('envelope-wrapper');
-        const envelope = document.getElementById('main-envelope');
         const letterOverlay = document.getElementById('letter-overlay');
 
         envelopeWrapper.addEventListener('click', () => {
-            envelope.classList.add('open');
-            
-            // Step-by-step presentation delay for smoother UX
+            envelopeWrapper.classList.add('open');
             setTimeout(() => {
                 letterOverlay.classList.add('active');
                 createHeartsBurst();
@@ -666,11 +511,9 @@
         });
 
 
-        /* ==========================================
-           VISUAL FX SPECIFIC FUNCTIONS
-           ========================================== */
+        /* ---------------- FX FUNCTIONS ---------------- */
         function createConfetti() {
-            const colors = ['#fb6f92', '#ffb7c5', '#ffe5ec', '#ffcbf2', '#f3c68f'];
+            const colors = ['#fb6f92', '#ffb7c5', '#ffe5ec', '#ffcbf2', '#f3c68f', '#4caf50'];
             for (let i = 0; i < 60; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('confetti');
@@ -681,7 +524,6 @@
                 particle.style.animationDelay = Math.random() * 0.5 + 's';
                 particle.style.animationDuration = Math.random() * 1.5 + 1.5 + 's';
                 document.body.appendChild(particle);
-                
                 setTimeout(() => particle.remove(), 3000);
             }
         }
@@ -696,7 +538,6 @@
                 heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
                 heart.style.animationDelay = (Math.random() * 0.3) + 's';
                 document.body.appendChild(heart);
-                
                 setTimeout(() => heart.remove(), 2000);
             }
         }
