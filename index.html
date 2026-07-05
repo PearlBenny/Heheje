@@ -158,7 +158,7 @@
 
         #sad-emoji {
             position: absolute;
-            top: 25px;
+            top: 200px; /* تم تعديل الموقع ليكون أقرب لكلمة لا */
             font-size: 2.5rem;
             opacity: 0;
             transition: all 0.3s ease;
@@ -171,13 +171,13 @@
             width: 180px;
             height: 16px;
             border-radius: 10px;
-            /* Gradient: Green (Yes) at 0, Red (No) at 100 */
-            background: linear-gradient(90deg, #4caf50 0%, #f44336 100%);
+            /* أحمر في البداية (الأسفل)، أخضر في النهاية (الأعلى) */
+            background: linear-gradient(90deg, #f44336 0%, #4caf50 100%);
             outline: none;
             position: absolute;
             top: 84px;
             left: -70px;
-            transform: rotate(-90deg); /* Rotate to make it vertical */
+            transform: rotate(-90deg);
         }
 
         .vertical-slider::-webkit-slider-thumb {
@@ -200,13 +200,13 @@
             width: 220px;
             height: auto;
             margin: 2rem 0;
-            cursor: pointer;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: grab;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s;
             filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
         }
 
         .simple-cake:active {
-            transform: scale(0.9);
+            cursor: grabbing;
         }
 
         /* ==========================================
@@ -229,7 +229,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* Creating the folded look of an envelope */
             border-left: 120px solid #f9f9f9;
             border-right: 120px solid #f9f9f9;
             border-bottom: 80px solid #f0f0f0;
@@ -261,7 +260,7 @@
 
         .heart-seal {
             position: absolute;
-            top: 72px; /* Positioned right at the tip of the flap */
+            top: 72px; 
             left: 50%;
             transform: translateX(-50%);
             font-size: 2rem;
@@ -274,7 +273,6 @@
             opacity: 0;
         }
 
-        /* Letter sliding out mechanism */
         .letter-popup-overlay {
             position: fixed;
             top: 0;
@@ -348,19 +346,19 @@
         <div class="card">
             <h2>كنتي متوقعة إني أهتم كثير ليوم زي هيك؟</h2>
             <div class="slider-wrapper">
-                <span class="slider-label" style="color: #f44336;">لا</span>
-                <div id="sad-emoji">😢</div>
+                <span class="slider-label" style="color: #4caf50;">نعم</span>
                 <div class="slider-container">
                     <input type="range" id="love-slider" class="vertical-slider" min="0" max="100" value="50">
                 </div>
-                <span class="slider-label" style="color: #4caf50;">نعم</span>
+                <div id="sad-emoji">😢</div>
+                <span class="slider-label" style="color: #f44336;">لا</span>
             </div>
         </div>
     </section>
 
     <section id="scene-3" class="scene">
         <div class="card">
-            <h2>اضغطي على الكيكة! 🎂</h2>
+            <h2>اسحبي إصبعك لتقطيع الكيكة! 🎂</h2>
             <img src="cake.png" id="the-cake" class="simple-cake" alt="Cake" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'240\' height=\'240\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'60\' r=\'35\' fill=\'%23fb6f92\'/><rect x=\'47\' y=\'10\' width=\'6\' height=\'15\' fill=\'%23ffb7c5\'/><circle cx=\'50\' cy=\'8\' r=\'4\' fill=\'%23ffd166\'/></svg>'">
         </div>
     </section>
@@ -450,8 +448,8 @@
             if (scene2Done) return;
             let val = parseInt(slider.value);
             
-            // السحب للأعلى (أحمر / لا) - القيمة تقترب من 100 بسبب الدوران
-            if (val > 85) {
+            // السحب للأسفل (أحمر / لا) - القيمة تقترب من 0
+            if (val < 15) {
                 sadEmoji.style.opacity = '1';
                 sadEmoji.style.transform = 'translateY(-15px) scale(1.2)';
             } else {
@@ -459,8 +457,8 @@
                 sadEmoji.style.transform = 'translateY(0) scale(1)';
             }
 
-            // السحب للأسفل (أخضر / نعم) - القيمة تقترب من 0
-            if (val < 10) {
+            // السحب للأعلى (أخضر / نعم) - القيمة تقترب من 100
+            if (val > 85) {
                 scene2Done = true;
                 slider.disabled = true;
                 createConfetti();
@@ -468,7 +466,6 @@
             }
         });
 
-        // إذا تم الإفلات ولم تصل للنجاح ترجع للمنتصف
         function resetSlider() {
             if (!scene2Done) {
                 slider.value = 50;
@@ -478,25 +475,47 @@
         slider.addEventListener('touchend', resetSlider);
         slider.addEventListener('mouseup', resetSlider);
 
-
-        /* ---------------- SCENE 3: CAKE ---------------- */
+        /* ---------------- SCENE 3: CAKE SWIPE (CUTTING) ---------------- */
         const theCake = document.getElementById('the-cake');
-        let cakeClicked = false;
+        let cakeCut = false;
+        let startX = 0;
+        let startY = 0;
 
-        theCake.addEventListener('click', () => {
-            if (cakeClicked) return;
-            cakeClicked = true;
-            
-            // تأثير ضغطة بسيطة
-            theCake.style.transform = 'scale(0.9)';
-            createConfetti();
-            createHeartsBurst();
-            
-            setTimeout(() => {
-                navigateToScene('scene-3', 'scene-4');
-            }, 1200);
-        });
+        function handleSwipeStart(e) {
+            if (cakeCut) return;
+            startX = e.changedTouches ? e.changedTouches[0].screenX : e.screenX;
+            startY = e.changedTouches ? e.changedTouches[0].screenY : e.screenY;
+        }
 
+        function handleSwipeEnd(e) {
+            if (cakeCut) return;
+            let endX = e.changedTouches ? e.changedTouches[0].screenX : e.screenX;
+            let endY = e.changedTouches ? e.changedTouches[0].screenY : e.screenY;
+            
+            let diffX = Math.abs(endX - startX);
+            let diffY = Math.abs(endY - startY);
+
+            // إذا كان السحب كافياً لتقطيع الكيكة (أكثر من 50 بكسل)
+            if (diffX > 50 || diffY > 50) {
+                cakeCut = true;
+                // تأثير بصري للقطع (ميلان الكيكة كأنها قُسمت)
+                theCake.style.transform = 'scale(0.9) skewX(-10deg) translateY(10px)';
+                theCake.style.opacity = '0.8';
+                
+                createConfetti();
+                createHeartsBurst();
+                
+                setTimeout(() => {
+                    navigateToScene('scene-3', 'scene-4');
+                }, 1200);
+            }
+        }
+
+        // دعم اللمس للموبايل والماوس للكمبيوتر
+        theCake.addEventListener('touchstart', handleSwipeStart);
+        theCake.addEventListener('touchend', handleSwipeEnd);
+        theCake.addEventListener('mousedown', handleSwipeStart);
+        theCake.addEventListener('mouseup', handleSwipeEnd);
 
         /* ---------------- SCENE 4: ENVELOPE ---------------- */
         const envelopeWrapper = document.getElementById('envelope-wrapper');
@@ -509,7 +528,6 @@
                 createHeartsBurst();
             }, 700);
         });
-
 
         /* ---------------- FX FUNCTIONS ---------------- */
         function createConfetti() {
