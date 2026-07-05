@@ -11,18 +11,17 @@
 
     <style>
         /* ==========================================
-           1. CONFIGURATION & VARIABLES (PREMIUM THEME)
+           1. CONFIGURATION & VARIABLES (PREMIUM)
            ========================================== */
         :root {
-            --primary-color: #D6A4A4; /* Elegant Rose Gold */
-            --accent-color: #B5838D;
-            --light-bg: #FCF9F9;
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --text-dark: #4A3B3C;
-            --text-muted: #8A797B;
+            --primary-pink: #E8B4B8; /* لون أنيق وعصري */
+            --light-pink: #FAF3F3;
+            --dark-pink: #A4777E;
+            --text-dark: #3A3335;
+            --text-muted: #8A7B7E;
             --font-main: 'Tajawal', sans-serif;
-            --transition-speed: 0.6s;
-            --shadow-soft: 0 15px 35px rgba(181, 131, 141, 0.12);
+            --transition-speed: 0.7s;
+            --shadow-soft: 0 15px 40px rgba(164, 119, 126, 0.15);
         }
 
         /* ==========================================
@@ -40,7 +39,7 @@
             height: 100%;
             overflow: hidden;
             font-family: var(--font-main);
-            background-color: var(--light-bg);
+            background-color: var(--light-pink);
             color: var(--text-dark);
             user-select: none;
         }
@@ -51,7 +50,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 50% 0%, #FFF0F3 0%, #FCF9F9 40%, #EFE9E9 100%);
+            background: radial-gradient(circle at top, #FFF9F9 0%, #FAF3F3 50%, #EFE5E6 100%);
             z-index: 1;
             pointer-events: none;
         }
@@ -75,25 +74,25 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity var(--transition-speed) ease-in-out, transform var(--transition-speed) ease-in-out;
-            transform: translateY(20px);
+            transform: translateY(20px) scale(0.98);
         }
 
         .scene.active {
             opacity: 1;
             pointer-events: auto;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
         .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-radius: 24px;
             padding: 3rem 2rem;
             width: 100%;
             max-width: 380px;
             box-shadow: var(--shadow-soft);
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.9);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -101,47 +100,38 @@
         }
 
         h2 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 700;
             color: var(--text-dark);
             line-height: 1.5;
-            letter-spacing: 0.5px;
         }
 
         .btn {
             font-family: var(--font-main);
             border: none;
-            padding: 0.85rem 2.2rem;
-            font-size: 1.1rem;
+            padding: 0.9rem 2.2rem;
+            font-size: 1.15rem;
             font-weight: 700;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
         }
 
-        .btn-primary { 
-            background-color: var(--accent-color); 
-            color: white; 
-        }
-        
-        .btn-secondary { 
-            background-color: transparent; 
-            color: var(--accent-color); 
-            border: 2px solid var(--accent-color); 
-        }
+        .btn-primary { background-color: var(--dark-pink); color: white; }
+        .btn-secondary { background-color: transparent; color: var(--dark-pink); border: 2px solid var(--primary-pink); }
 
         /* ==========================================
            4. INTRO SCREEN
            ========================================== */
-        #intro-scene { background-color: #2A2425; color: #F8F4F4; z-index: 10; }
-        #intro-scene .text-1 { font-size: 2rem; font-weight: 700; opacity: 0; transform: translateY(20px); transition: all 1s ease; color: #EAD2D2; }
-        #intro-scene .text-2 { font-size: 1.1rem; color: #A89B9D; margin-top: 1.5rem; opacity: 0; transition: all 1s ease; animation: pulse 2s infinite alternate; }
+        #intro-scene { background-color: #2D2728; color: #ffffff; z-index: 10; }
+        #intro-scene .text-1 { font-size: 2rem; font-weight: 700; opacity: 0; transform: translateY(20px); transition: all 1s ease; color: #F5E6E8; }
+        #intro-scene .text-2 { font-size: 1.1rem; color: #A69B9D; margin-top: 1.5rem; opacity: 0; transition: all 1s ease; animation: pulse 2s infinite alternate; }
 
         /* ==========================================
            5. SCENE 1: BUTTONS
            ========================================== */
-        .btn-container-s1 { display: flex; gap: 1rem; align-items: center; justify-content: center; width: 100%; min-height: 120px; }
+        .btn-container-s1 { display: flex; gap: 1rem; align-items: center; justify-content: center; width: 100%; min-height: 150px; }
 
         /* ==========================================
            6. SCENE 2: SLIDER
@@ -150,19 +140,21 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1rem;
+            height: 280px;
+            margin: 1rem 0;
             position: relative;
+            justify-content: space-between;
         }
 
         .slider-label {
             font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--text-muted);
+            font-size: 1.3rem;
         }
 
         .slider-container {
             position: relative;
-            height: 200px;
+            height: 180px;
+            width: 40px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -170,7 +162,7 @@
 
         #sad-emoji {
             position: absolute;
-            bottom: -50px; 
+            bottom: -5px; /* قريب من كلمة "لا" في الأسفل */
             font-size: 2.2rem;
             opacity: 0;
             transition: all 0.3s ease;
@@ -178,14 +170,15 @@
         }
 
         .vertical-slider {
-            -webkit-appearance: slider-vertical;
-            appearance: slider-vertical;
-            width: 8px;
-            height: 200px;
-            background: #EAE0E1;
+            -webkit-appearance: none;
+            appearance: none;
+            width: 180px;
+            height: 8px;
             border-radius: 10px;
+            background: #EAE0E1;
             outline: none;
-            cursor: pointer;
+            position: absolute;
+            transform: rotate(-90deg); /* 0 على اليسار (يصبح أسفل) و 100 على اليمين (يصبح أعلى) */
         }
 
         .vertical-slider::-webkit-slider-thumb {
@@ -196,33 +189,32 @@
             border-radius: 50%;
             background: #fff;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            border: 3px solid var(--accent-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border: 3px solid var(--dark-pink);
             transition: transform 0.1s;
         }
 
         /* ==========================================
            7. SCENE 3: CAKE
            ========================================== */
+        .simple-cake {
+            width: 320px; /* تم تكبير الكيكة */
+            height: auto;
+            margin: 1rem 0;
+            cursor: grab;
+            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.1));
+            -webkit-user-drag: none;
+        }
+
+        .simple-cake:active { cursor: grabbing; }
+        
         .cake-container {
             position: relative;
-            margin: 1rem 0;
+            width: 320px;
+            height: 320px;
             display: flex;
             justify-content: center;
             align-items: center;
-            cursor: grab;
-        }
-
-        .cake-container:active {
-            cursor: grabbing;
-        }
-
-        /* تم تكبير الكيكة لتصبح 300px */
-        .simple-cake {
-            width: 300px; 
-            height: auto;
-            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.08));
-            transition: transform 0.2s ease;
         }
 
         /* ==========================================
@@ -236,8 +228,8 @@
             cursor: pointer;
             background: #FDFBFC;
             border-radius: 8px;
-            box-shadow: 0 12px 30px rgba(181, 131, 141, 0.15);
-            border: 1px solid #F0E8E9;
+            box-shadow: 0 12px 30px rgba(164, 119, 126, 0.15);
+            border: 1px solid #F0E6E8;
         }
 
         .envelope-front {
@@ -246,9 +238,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            border-left: 130px solid #F9F5F6;
-            border-right: 130px solid #F9F5F6;
-            border-bottom: 85px solid #F4EDED;
+            border-left: 130px solid #F8F4F5;
+            border-right: 130px solid #F8F4F5;
+            border-bottom: 85px solid #F3ECED;
             border-top: 85px solid transparent;
             border-radius: 0 0 8px 8px;
             z-index: 4;
@@ -280,23 +272,21 @@
             top: 75px; 
             left: 50%;
             transform: translateX(-50%);
-            width: 35px;
-            height: 35px;
-            background: var(--accent-color);
+            width: 40px;
+            height: 40px;
+            background: var(--dark-pink);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             z-index: 6;
             transition: opacity 0.3s ease;
-            box-shadow: 0 4px 10px rgba(181, 131, 141, 0.4);
+            box-shadow: 0 4px 10px rgba(164, 119, 126, 0.4);
         }
 
-        .envelope-wrapper.open .heart-seal {
-            opacity: 0;
-        }
+        .envelope-wrapper.open .heart-seal { opacity: 0; }
 
         .letter-popup-overlay {
             position: fixed;
@@ -304,12 +294,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(42, 36, 37, 0.6);
-            backdrop-filter: blur(5px);
+            background: rgba(45, 39, 40, 0.6);
+            backdrop-filter: blur(6px);
             z-index: 20;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.6s ease;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -325,23 +315,23 @@
             border-radius: 12px;
             padding: 3rem 2.5rem;
             box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-            transform: translateY(50px) scale(0.95);
+            transform: translateY(60px) scale(0.95);
             transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
             position: relative;
             overflow: hidden;
         }
-        
+
         .letter::before {
             content: '';
             position: absolute;
             top: 0; right: 0; bottom: 0; width: 6px;
-            background: var(--primary-color);
+            background: var(--dark-pink);
         }
 
         .letter-popup-overlay.active .letter { transform: translateY(0) scale(1); }
-        .letter-header { text-align: right; font-weight: 700; color: var(--accent-color); font-size: 1.3rem; margin-bottom: 1.5rem; }
-        .letter-body { text-align: justify; line-height: 1.9; font-size: 1.1rem; color: #5A4A4C; margin-bottom: 2.5rem; }
-        .letter-footer { text-align: left; font-weight: 700; color: var(--accent-color); font-size: 1.2rem; }
+        .letter-header { text-align: right; font-weight: 700; color: var(--dark-pink); font-size: 1.3rem; margin-bottom: 1.5rem; }
+        .letter-body { text-align: justify; line-height: 1.9; font-size: 1.1rem; color: #5A4E50; margin-bottom: 2.5rem; }
+        .letter-footer { text-align: left; font-weight: 700; color: var(--dark-pink); font-size: 1.2rem; }
 
         /* ==========================================
            9. EFFECTS & ANIMATIONS
@@ -380,12 +370,12 @@
         <div class="card">
             <h2>كنتي متوقعة إني أهتم كثير ليوم زي هيك؟</h2>
             <div class="slider-wrapper">
-                <span class="slider-label" style="color: #A3C9A6;">نعم</span>
+                <span class="slider-label" style="color: var(--dark-pink);">نعم</span>
                 <div class="slider-container">
                     <input type="range" id="love-slider" class="vertical-slider" min="0" max="100" value="50">
                 </div>
                 <div id="sad-emoji">😢</div>
-                <span class="slider-label" style="color: #D6A4A4;">لا</span>
+                <span class="slider-label" style="color: var(--text-muted);">لا</span>
             </div>
         </div>
     </section>
@@ -394,7 +384,7 @@
         <div class="card">
             <h2>اسحبي إصبعك لتقطيع الكيكة! 🎂</h2>
             <div class="cake-container" id="cake-wrapper">
-                <img src="cake.png" id="the-cake" class="simple-cake" alt="Cake" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'300\' viewBox=\'0 0 100 100\'><path d=\'M20 70 Q 50 85 80 70 L 80 40 Q 50 55 20 40 Z\' fill=\'%23EAD2D2\'/><path d=\'M20 40 Q 50 55 80 40 Q 50 25 20 40 Z\' fill=\'%23FCF9F9\' stroke=\'%23D6A4A4\' stroke-width=\'1\'/><rect x=\'48\' y=\'15\' width=\'4\' height=\'15\' fill=\'%23B5838D\' rx=\'2\'/><circle cx=\'50\' cy=\'10\' r=\'4\' fill=\'%23D4AF37\'/></svg>'">
+                <img src="cake.png" id="the-cake" class="simple-cake" alt="Cake" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'320\' height=\'320\' viewBox=\'0 0 100 100\'><path d=\'M20 70 Q 50 85 80 70 L 80 40 Q 50 55 20 40 Z\' fill=\'%23E8B4B8\'/><path d=\'M20 40 Q 50 55 80 40 Q 50 25 20 40 Z\' fill=\'%23FAF3F3\' stroke=\'%23A4777E\' stroke-width=\'1.5\'/><rect x=\'48\' y=\'15\' width=\'4\' height=\'15\' fill=\'%23A4777E\' rx=\'2\'/><circle cx=\'50\' cy=\'10\' r=\'3.5\' fill=\'%23D4AF37\'/></svg>'">
             </div>
         </div>
     </section>
@@ -484,16 +474,16 @@
             if (scene2Done) return;
             let val = parseInt(slider.value);
             
-            // السحب للأسفل (القيمة تقترب من 0) يظهر إيموجي الحزن
+            // السحب للأسفل (اتجاه الصفر/اليسار)
             if (val < 20) {
                 sadEmoji.style.opacity = '1';
-                sadEmoji.style.transform = 'translateY(-20px) scale(1.1)';
+                sadEmoji.style.transform = 'translateY(-15px) scale(1.1)';
             } else {
                 sadEmoji.style.opacity = '0';
                 sadEmoji.style.transform = 'translateY(0) scale(1)';
             }
 
-            // السحب للأعلى (القيمة تقترب من 100) ينتقل للصفحة التالية
+            // السحب للأعلى (اتجاه 100/اليمين) ينتقل للصفحة التالية
             if (val > 85) {
                 scene2Done = true;
                 slider.disabled = true;
@@ -533,47 +523,43 @@
             let diffX = Math.abs(endX - startX);
             let diffY = Math.abs(endY - startY);
 
-            // تم السحب بشكل كافٍ
+            // تم السحب بشكل كافٍ لتقطيع الكيكة
             if (diffX > 40 || diffY > 40) {
                 cakeCut = true;
                 
-                // إنشاء تأثير انقسام الكيكة لنصفين باستخدام clip-path
-                const cakeRect = theCake.getBoundingClientRect();
+                // إنشاء تأثير الانقسام (انقسام الصورة إلى قسمين فعلياً)
                 const cakeSrc = theCake.src;
-                
-                theCake.style.display = 'none'; // إخفاء الأصلية
+                theCake.style.display = 'none'; 
                 
                 const leftHalf = document.createElement('img');
                 leftHalf.src = cakeSrc;
-                leftHalf.className = 'simple-cake';
                 leftHalf.style.position = 'absolute';
+                leftHalf.style.width = '100%';
                 leftHalf.style.clipPath = 'polygon(0 0, 50% 0, 50% 100%, 0 100%)';
                 leftHalf.style.transition = 'transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 1.2s';
                 
                 const rightHalf = document.createElement('img');
                 rightHalf.src = cakeSrc;
-                rightHalf.className = 'simple-cake';
                 rightHalf.style.position = 'absolute';
+                rightHalf.style.width = '100%';
                 rightHalf.style.clipPath = 'polygon(50% 0, 100% 0, 100% 100%, 50% 100%)';
                 rightHalf.style.transition = 'transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 1.2s';
 
                 cakeWrapper.appendChild(leftHalf);
                 cakeWrapper.appendChild(rightHalf);
 
-                // تفعيل حركة الانقسام
+                // حركة تباعد القسمين عن بعضهما وسقوطهما قليلاً للأسفل
                 requestAnimationFrame(() => {
-                    leftHalf.style.transform = 'translate(-35px, 25px) rotate(-10deg)';
-                    rightHalf.style.transform = 'translate(35px, 25px) rotate(10deg)';
-                    leftHalf.style.opacity = '0.7';
-                    rightHalf.style.opacity = '0.7';
+                    leftHalf.style.transform = 'translate(-40px, 30px) rotate(-15deg)';
+                    rightHalf.style.transform = 'translate(40px, 30px) rotate(15deg)';
+                    leftHalf.style.opacity = '0';
+                    rightHalf.style.opacity = '0';
                 });
                 
                 createConfetti();
                 createHeartsBurst();
                 
-                setTimeout(() => {
-                    navigateToScene('scene-3', 'scene-4');
-                }, 1600);
+                setTimeout(() => { navigateToScene('scene-3', 'scene-4'); }, 1500);
             }
         }
 
@@ -596,7 +582,7 @@
 
         /* ---------------- FX FUNCTIONS ---------------- */
         function createConfetti() {
-            const colors = ['#D6A4A4', '#B5838D', '#EAD2D2', '#D4AF37', '#F9F5F6'];
+            const colors = ['#E8B4B8', '#A4777E', '#FAF3F3', '#D4AF37'];
             for (let i = 0; i < 70; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('confetti');
@@ -615,13 +601,11 @@
             for (let i = 0; i < 18; i++) {
                 const heart = document.createElement('div');
                 heart.classList.add('heart-particle');
-                heart.innerHTML = '✨'; // تم استبدال القلب بلمعة تناسب الثيم الجديد
-                if(Math.random() > 0.5) heart.innerHTML = '❤';
-                
+                heart.innerHTML = Math.random() > 0.5 ? '✨' : '❤';
                 heart.style.left = (Math.random() * 60 + 20) + 'vw';
                 heart.style.top = (Math.random() * 40 + 30) + 'vh';
                 heart.style.fontSize = (Math.random() * 12 + 12) + 'px';
-                heart.style.color = Math.random() > 0.5 ? '#D6A4A4' : '#D4AF37';
+                heart.style.color = Math.random() > 0.5 ? 'var(--dark-pink)' : '#D4AF37';
                 heart.style.animationDelay = (Math.random() * 0.4) + 's';
                 document.body.appendChild(heart);
                 setTimeout(() => heart.remove(), 2500);
