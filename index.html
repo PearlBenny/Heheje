@@ -11,16 +11,18 @@
 
     <style>
         /* ==========================================
-           1. CONFIGURATION & VARIABLES
+           1. CONFIGURATION & VARIABLES (PREMIUM THEME)
            ========================================== */
         :root {
-            --primary-pink: #ffb7c5;
-            --light-pink: #ffe5ec;
-            --dark-pink: #fb6f92;
-            --text-dark: #4a4a4a;
-            --bg-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><path d="M30 20c-2-3-5-3-7-1-3 3-1 7 2 9l5 4 5-4c3-2 5-6 2-9-2-2-5-2-7 1zm-15 20c-1-2-3-2-4-1-1 1-1 4 1 5l3 2 3-2c2-1 2-4 1-5-1-1-3-1-4 1z" fill="%23fb6f92" fill-opacity="0.08"/></svg>');
+            --primary-color: #D6A4A4; /* Elegant Rose Gold */
+            --accent-color: #B5838D;
+            --light-bg: #FCF9F9;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --text-dark: #4A3B3C;
+            --text-muted: #8A797B;
             --font-main: 'Tajawal', sans-serif;
             --transition-speed: 0.6s;
+            --shadow-soft: 0 15px 35px rgba(181, 131, 141, 0.12);
         }
 
         /* ==========================================
@@ -38,7 +40,7 @@
             height: 100%;
             overflow: hidden;
             font-family: var(--font-main);
-            background-color: var(--light-pink);
+            background-color: var(--light-bg);
             color: var(--text-dark);
             user-select: none;
         }
@@ -49,7 +51,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: var(--bg-pattern);
+            background: radial-gradient(circle at 50% 0%, #FFF0F3 0%, #FCF9F9 40%, #EFE9E9 100%);
             z-index: 1;
             pointer-events: none;
         }
@@ -73,64 +75,73 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity var(--transition-speed) ease-in-out, transform var(--transition-speed) ease-in-out;
-            transform: scale(0.95);
+            transform: translateY(20px);
         }
 
         .scene.active {
             opacity: 1;
             pointer-events: auto;
-            transform: scale(1);
+            transform: translateY(0);
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 30px;
-            padding: 2.5rem 1.5rem;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 3rem 2rem;
             width: 100%;
-            max-width: 350px;
-            box-shadow: 0 10px 30px rgba(251, 111, 146, 0.15);
-            border: 2px solid rgba(255, 255, 255, 0.6);
+            max-width: 380px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(255, 255, 255, 0.8);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
         h2 {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            color: #3a3a3a;
-            line-height: 1.4;
+            color: var(--text-dark);
+            line-height: 1.5;
+            letter-spacing: 0.5px;
         }
 
         .btn {
             font-family: var(--font-main);
             border: none;
-            padding: 0.8rem 2rem;
+            padding: 0.85rem 2.2rem;
             font-size: 1.1rem;
             font-weight: 700;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.06);
         }
 
-        .btn-primary { background-color: var(--dark-pink); color: white; }
-        .btn-secondary { background-color: white; color: var(--dark-pink); border: 2px solid var(--light-pink); }
+        .btn-primary { 
+            background-color: var(--accent-color); 
+            color: white; 
+        }
+        
+        .btn-secondary { 
+            background-color: transparent; 
+            color: var(--accent-color); 
+            border: 2px solid var(--accent-color); 
+        }
 
         /* ==========================================
            4. INTRO SCREEN
            ========================================== */
-        #intro-scene { background-color: #1a1a1a; color: #ffffff; z-index: 10; }
-        #intro-scene .text-1 { font-size: 1.8rem; font-weight: 700; opacity: 0; transform: translateY(20px); transition: all 0.8s ease; }
-        #intro-scene .text-2 { font-size: 1.1rem; color: #aaaaaa; margin-top: 1.5rem; opacity: 0; transition: all 0.8s ease; animation: pulse 1.5s infinite alternate; }
+        #intro-scene { background-color: #2A2425; color: #F8F4F4; z-index: 10; }
+        #intro-scene .text-1 { font-size: 2rem; font-weight: 700; opacity: 0; transform: translateY(20px); transition: all 1s ease; color: #EAD2D2; }
+        #intro-scene .text-2 { font-size: 1.1rem; color: #A89B9D; margin-top: 1.5rem; opacity: 0; transition: all 1s ease; animation: pulse 2s infinite alternate; }
 
         /* ==========================================
            5. SCENE 1: BUTTONS
            ========================================== */
-        .btn-container-s1 { display: flex; gap: 1rem; align-items: center; justify-content: center; width: 100%; min-height: 150px; }
+        .btn-container-s1 { display: flex; gap: 1rem; align-items: center; justify-content: center; width: 100%; min-height: 120px; }
 
         /* ==========================================
            6. SCENE 2: SLIDER
@@ -139,74 +150,79 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 250px;
-            margin: 1rem 0;
+            gap: 1rem;
             position: relative;
         }
 
         .slider-label {
-            font-weight: 900;
-            font-size: 1.4rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text-muted);
         }
 
         .slider-container {
             position: relative;
-            height: 180px;
-            width: 40px;
-            margin: 0.5rem 0;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         #sad-emoji {
             position: absolute;
-            top: 200px; /* تم تعديل الموقع ليكون أقرب لكلمة لا */
-            font-size: 2.5rem;
+            bottom: -50px; 
+            font-size: 2.2rem;
             opacity: 0;
             transition: all 0.3s ease;
             z-index: 10;
         }
 
         .vertical-slider {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 180px;
-            height: 16px;
+            -webkit-appearance: slider-vertical;
+            appearance: slider-vertical;
+            width: 8px;
+            height: 200px;
+            background: #EAE0E1;
             border-radius: 10px;
-            /* أحمر في البداية (الأسفل)، أخضر في النهاية (الأعلى) */
-            background: linear-gradient(90deg, #f44336 0%, #4caf50 100%);
             outline: none;
-            position: absolute;
-            top: 84px;
-            left: -70px;
-            transform: rotate(-90deg);
+            cursor: pointer;
         }
 
         .vertical-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             background: #fff;
             cursor: pointer;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
-            border: 4px solid var(--dark-pink);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 3px solid var(--accent-color);
             transition: transform 0.1s;
         }
 
         /* ==========================================
            7. SCENE 3: CAKE
            ========================================== */
-        .simple-cake {
-            width: 220px;
-            height: auto;
-            margin: 2rem 0;
+        .cake-container {
+            position: relative;
+            margin: 1rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             cursor: grab;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
         }
 
-        .simple-cake:active {
+        .cake-container:active {
             cursor: grabbing;
+        }
+
+        /* تم تكبير الكيكة لتصبح 300px */
+        .simple-cake {
+            width: 300px; 
+            height: auto;
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.08));
+            transition: transform 0.2s ease;
         }
 
         /* ==========================================
@@ -214,13 +230,14 @@
            ========================================== */
         .envelope-wrapper {
             position: relative;
-            width: 240px;
-            height: 160px;
-            margin-top: 2rem;
+            width: 260px;
+            height: 170px;
+            margin-top: 1rem;
             cursor: pointer;
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            background: #FDFBFC;
+            border-radius: 8px;
+            box-shadow: 0 12px 30px rgba(181, 131, 141, 0.15);
+            border: 1px solid #F0E8E9;
         }
 
         .envelope-front {
@@ -229,11 +246,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            border-left: 120px solid #f9f9f9;
-            border-right: 120px solid #f9f9f9;
-            border-bottom: 80px solid #f0f0f0;
-            border-top: 80px solid transparent;
-            border-radius: 0 0 10px 10px;
+            border-left: 130px solid #F9F5F6;
+            border-right: 130px solid #F9F5F6;
+            border-bottom: 85px solid #F4EDED;
+            border-top: 85px solid transparent;
+            border-radius: 0 0 8px 8px;
             z-index: 4;
             pointer-events: none;
         }
@@ -244,13 +261,13 @@
             left: 0;
             width: 0;
             height: 0;
-            border-left: 120px solid transparent;
-            border-right: 120px solid transparent;
-            border-top: 90px solid #ffffff;
+            border-left: 130px solid transparent;
+            border-right: 130px solid transparent;
+            border-top: 95px solid #FDFBFC;
             transform-origin: top;
-            transition: transform 0.6s ease;
+            transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
             z-index: 5;
-            filter: drop-shadow(0 3px 3px rgba(0,0,0,0.08));
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.04));
         }
 
         .envelope-wrapper.open .envelope-flap {
@@ -260,13 +277,21 @@
 
         .heart-seal {
             position: absolute;
-            top: 72px; 
+            top: 75px; 
             left: 50%;
             transform: translateX(-50%);
-            font-size: 2rem;
+            width: 35px;
+            height: 35px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.1rem;
             z-index: 6;
             transition: opacity 0.3s ease;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(181, 131, 141, 0.4);
         }
 
         .envelope-wrapper.open .heart-seal {
@@ -279,7 +304,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
+            background: rgba(42, 36, 37, 0.6);
+            backdrop-filter: blur(5px);
             z-index: 20;
             opacity: 0;
             pointer-events: none;
@@ -294,32 +320,40 @@
 
         .letter {
             width: 100%;
-            max-width: 340px;
-            background: #fffdf9;
-            border-radius: 20px;
-            padding: 2.5rem 2rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            transform: translateY(100vh);
-            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-            border-right: 6px solid var(--dark-pink);
+            max-width: 360px;
+            background: #FFFEFC;
+            border-radius: 12px;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            transform: translateY(50px) scale(0.95);
+            transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .letter::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; width: 6px;
+            background: var(--primary-color);
         }
 
-        .letter-popup-overlay.active .letter { transform: translateY(0); }
-        .letter-header { text-align: right; font-weight: 700; color: var(--dark-pink); font-size: 1.2rem; margin-bottom: 1rem; }
-        .letter-body { text-align: justify; line-height: 1.8; font-size: 1.05rem; color: #555; margin-bottom: 2rem; }
-        .letter-footer { text-align: left; font-weight: 700; color: var(--dark-pink); font-size: 1.1rem; }
+        .letter-popup-overlay.active .letter { transform: translateY(0) scale(1); }
+        .letter-header { text-align: right; font-weight: 700; color: var(--accent-color); font-size: 1.3rem; margin-bottom: 1.5rem; }
+        .letter-body { text-align: justify; line-height: 1.9; font-size: 1.1rem; color: #5A4A4C; margin-bottom: 2.5rem; }
+        .letter-footer { text-align: left; font-weight: 700; color: var(--accent-color); font-size: 1.2rem; }
 
         /* ==========================================
            9. EFFECTS & ANIMATIONS
            ========================================== */
-        @keyframes pulse { from { opacity: 0.3; } to { opacity: 0.8; } }
+        @keyframes pulse { from { opacity: 0.5; } to { opacity: 1; } }
         .bounce-active { animation: bounce 0.6s ease; }
-        @keyframes bounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+        @keyframes bounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
 
-        .heart-particle { position: fixed; pointer-events: none; z-index: 999; animation: floatUp 2s ease-out forwards; }
-        @keyframes floatUp { 0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; } 100% { transform: translateY(-150px) scale(0.5) rotate(45deg); opacity: 0; } }
+        .heart-particle { position: fixed; pointer-events: none; z-index: 999; animation: floatUp 2.5s ease-out forwards; }
+        @keyframes floatUp { 0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; } 100% { transform: translateY(-200px) scale(0.6) rotate(45deg); opacity: 0; } }
 
-        .confetti { position: fixed; width: 10px; height: 10px; z-index: 999; animation: fall 3s ease-out forwards; }
+        .confetti { position: fixed; width: 8px; height: 16px; border-radius: 4px; z-index: 999; animation: fall 3s ease-out forwards; }
         @keyframes fall { 0% { transform: translateY(-50px) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
     </style>
 </head>
@@ -346,12 +380,12 @@
         <div class="card">
             <h2>كنتي متوقعة إني أهتم كثير ليوم زي هيك؟</h2>
             <div class="slider-wrapper">
-                <span class="slider-label" style="color: #4caf50;">نعم</span>
+                <span class="slider-label" style="color: #A3C9A6;">نعم</span>
                 <div class="slider-container">
                     <input type="range" id="love-slider" class="vertical-slider" min="0" max="100" value="50">
                 </div>
                 <div id="sad-emoji">😢</div>
-                <span class="slider-label" style="color: #f44336;">لا</span>
+                <span class="slider-label" style="color: #D6A4A4;">لا</span>
             </div>
         </div>
     </section>
@@ -359,7 +393,9 @@
     <section id="scene-3" class="scene">
         <div class="card">
             <h2>اسحبي إصبعك لتقطيع الكيكة! 🎂</h2>
-            <img src="Cake.JPG" id="the-cake" class="simple-cake" alt="Cake" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'240\' height=\'240\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'60\' r=\'35\' fill=\'%23fb6f92\'/><rect x=\'47\' y=\'10\' width=\'6\' height=\'15\' fill=\'%23ffb7c5\'/><circle cx=\'50\' cy=\'8\' r=\'4\' fill=\'%23ffd166\'/></svg>'">
+            <div class="cake-container" id="cake-wrapper">
+                <img src="cake.png" id="the-cake" class="simple-cake" alt="Cake" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'300\' viewBox=\'0 0 100 100\'><path d=\'M20 70 Q 50 85 80 70 L 80 40 Q 50 55 20 40 Z\' fill=\'%23EAD2D2\'/><path d=\'M20 40 Q 50 55 80 40 Q 50 25 20 40 Z\' fill=\'%23FCF9F9\' stroke=\'%23D6A4A4\' stroke-width=\'1\'/><rect x=\'48\' y=\'15\' width=\'4\' height=\'15\' fill=\'%23B5838D\' rx=\'2\'/><circle cx=\'50\' cy=\'10\' r=\'4\' fill=\'%23D4AF37\'/></svg>'">
+            </div>
         </div>
     </section>
 
@@ -369,7 +405,7 @@
             <div class="envelope-wrapper" id="envelope-wrapper">
                 <div class="envelope-front"></div>
                 <div class="envelope-flap"></div>
-                <div class="heart-seal">❤️</div>
+                <div class="heart-seal">❤</div>
             </div>
         </div>
     </section>
@@ -424,12 +460,12 @@
             e.stopPropagation();
             if (clickCount < 6) {
                 clickCount++;
-                yesScale += 0.4;
+                yesScale += 0.3;
                 noScale -= 0.12;
                 btnYes.style.transform = `scale(${yesScale})`;
                 btnNo.style.transform = `scale(${noScale})`;
-                const randomX = (Math.random() - 0.5) * 20;
-                const randomY = (Math.random() - 0.5) * 20;
+                const randomX = (Math.random() - 0.5) * 30;
+                const randomY = (Math.random() - 0.5) * 30;
                 btnNo.style.translate = `${randomX}px ${randomY}px`;
             }
         });
@@ -448,21 +484,21 @@
             if (scene2Done) return;
             let val = parseInt(slider.value);
             
-            // السحب للأسفل (أحمر / لا) - القيمة تقترب من 0
-            if (val < 15) {
+            // السحب للأسفل (القيمة تقترب من 0) يظهر إيموجي الحزن
+            if (val < 20) {
                 sadEmoji.style.opacity = '1';
-                sadEmoji.style.transform = 'translateY(-15px) scale(1.2)';
+                sadEmoji.style.transform = 'translateY(-20px) scale(1.1)';
             } else {
                 sadEmoji.style.opacity = '0';
                 sadEmoji.style.transform = 'translateY(0) scale(1)';
             }
 
-            // السحب للأعلى (أخضر / نعم) - القيمة تقترب من 100
+            // السحب للأعلى (القيمة تقترب من 100) ينتقل للصفحة التالية
             if (val > 85) {
                 scene2Done = true;
                 slider.disabled = true;
                 createConfetti();
-                setTimeout(() => { navigateToScene('scene-2', 'scene-3'); }, 800);
+                setTimeout(() => { navigateToScene('scene-2', 'scene-3'); }, 600);
             }
         });
 
@@ -470,6 +506,7 @@
             if (!scene2Done) {
                 slider.value = 50;
                 sadEmoji.style.opacity = '0';
+                sadEmoji.style.transform = 'translateY(0) scale(1)';
             }
         }
         slider.addEventListener('touchend', resetSlider);
@@ -477,6 +514,7 @@
 
         /* ---------------- SCENE 3: CAKE SWIPE (CUTTING) ---------------- */
         const theCake = document.getElementById('the-cake');
+        const cakeWrapper = document.getElementById('cake-wrapper');
         let cakeCut = false;
         let startX = 0;
         let startY = 0;
@@ -495,27 +533,54 @@
             let diffX = Math.abs(endX - startX);
             let diffY = Math.abs(endY - startY);
 
-            // إذا كان السحب كافياً لتقطيع الكيكة (أكثر من 50 بكسل)
-            if (diffX > 50 || diffY > 50) {
+            // تم السحب بشكل كافٍ
+            if (diffX > 40 || diffY > 40) {
                 cakeCut = true;
-                // تأثير بصري للقطع (ميلان الكيكة كأنها قُسمت)
-                theCake.style.transform = 'scale(0.9) skewX(-10deg) translateY(10px)';
-                theCake.style.opacity = '0.8';
+                
+                // إنشاء تأثير انقسام الكيكة لنصفين باستخدام clip-path
+                const cakeRect = theCake.getBoundingClientRect();
+                const cakeSrc = theCake.src;
+                
+                theCake.style.display = 'none'; // إخفاء الأصلية
+                
+                const leftHalf = document.createElement('img');
+                leftHalf.src = cakeSrc;
+                leftHalf.className = 'simple-cake';
+                leftHalf.style.position = 'absolute';
+                leftHalf.style.clipPath = 'polygon(0 0, 50% 0, 50% 100%, 0 100%)';
+                leftHalf.style.transition = 'transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 1.2s';
+                
+                const rightHalf = document.createElement('img');
+                rightHalf.src = cakeSrc;
+                rightHalf.className = 'simple-cake';
+                rightHalf.style.position = 'absolute';
+                rightHalf.style.clipPath = 'polygon(50% 0, 100% 0, 100% 100%, 50% 100%)';
+                rightHalf.style.transition = 'transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 1.2s';
+
+                cakeWrapper.appendChild(leftHalf);
+                cakeWrapper.appendChild(rightHalf);
+
+                // تفعيل حركة الانقسام
+                requestAnimationFrame(() => {
+                    leftHalf.style.transform = 'translate(-35px, 25px) rotate(-10deg)';
+                    rightHalf.style.transform = 'translate(35px, 25px) rotate(10deg)';
+                    leftHalf.style.opacity = '0.7';
+                    rightHalf.style.opacity = '0.7';
+                });
                 
                 createConfetti();
                 createHeartsBurst();
                 
                 setTimeout(() => {
                     navigateToScene('scene-3', 'scene-4');
-                }, 1200);
+                }, 1600);
             }
         }
 
-        // دعم اللمس للموبايل والماوس للكمبيوتر
-        theCake.addEventListener('touchstart', handleSwipeStart);
-        theCake.addEventListener('touchend', handleSwipeEnd);
-        theCake.addEventListener('mousedown', handleSwipeStart);
-        theCake.addEventListener('mouseup', handleSwipeEnd);
+        cakeWrapper.addEventListener('touchstart', handleSwipeStart);
+        cakeWrapper.addEventListener('touchend', handleSwipeEnd);
+        cakeWrapper.addEventListener('mousedown', handleSwipeStart);
+        cakeWrapper.addEventListener('mouseup', handleSwipeEnd);
 
         /* ---------------- SCENE 4: ENVELOPE ---------------- */
         const envelopeWrapper = document.getElementById('envelope-wrapper');
@@ -526,37 +591,40 @@
             setTimeout(() => {
                 letterOverlay.classList.add('active');
                 createHeartsBurst();
-            }, 700);
+            }, 800);
         });
 
         /* ---------------- FX FUNCTIONS ---------------- */
         function createConfetti() {
-            const colors = ['#fb6f92', '#ffb7c5', '#ffe5ec', '#ffcbf2', '#f3c68f', '#4caf50'];
-            for (let i = 0; i < 60; i++) {
+            const colors = ['#D6A4A4', '#B5838D', '#EAD2D2', '#D4AF37', '#F9F5F6'];
+            for (let i = 0; i < 70; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('confetti');
                 particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
                 particle.style.left = Math.random() * 100 + 'vw';
                 particle.style.top = '-20px';
-                particle.style.transform = `scale(${Math.random() * 0.6 + 0.4})`;
+                particle.style.transform = `scale(${Math.random() * 0.7 + 0.3})`;
                 particle.style.animationDelay = Math.random() * 0.5 + 's';
-                particle.style.animationDuration = Math.random() * 1.5 + 1.5 + 's';
+                particle.style.animationDuration = Math.random() * 2 + 2 + 's';
                 document.body.appendChild(particle);
-                setTimeout(() => particle.remove(), 3000);
+                setTimeout(() => particle.remove(), 4000);
             }
         }
 
         function createHeartsBurst() {
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < 18; i++) {
                 const heart = document.createElement('div');
                 heart.classList.add('heart-particle');
-                heart.innerHTML = '❤️';
+                heart.innerHTML = '✨'; // تم استبدال القلب بلمعة تناسب الثيم الجديد
+                if(Math.random() > 0.5) heart.innerHTML = '❤';
+                
                 heart.style.left = (Math.random() * 60 + 20) + 'vw';
                 heart.style.top = (Math.random() * 40 + 30) + 'vh';
-                heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
-                heart.style.animationDelay = (Math.random() * 0.3) + 's';
+                heart.style.fontSize = (Math.random() * 12 + 12) + 'px';
+                heart.style.color = Math.random() > 0.5 ? '#D6A4A4' : '#D4AF37';
+                heart.style.animationDelay = (Math.random() * 0.4) + 's';
                 document.body.appendChild(heart);
-                setTimeout(() => heart.remove(), 2000);
+                setTimeout(() => heart.remove(), 2500);
             }
         }
     </script>
